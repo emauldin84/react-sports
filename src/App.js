@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      sport: 'football',
+      sport: '',
       team: '',
       sports: {
         "football": {
@@ -31,18 +31,18 @@ class App extends React.Component {
     }
   }
 
-  _displayTeams = (e) => {
-    console.log(e.target.textContent)
+  _displayTeams = (sport) => {
+    console.log(sport)
     this.setState({
-      sport: e.target.textContent,
+      sport,
       team: ''
     })    
   }
 
-  _displayPlayers = (e) => {
-    console.log(e.target.textContent)
+  _displayPlayers = (team) => {
+    console.log(team)
     this.setState({
-      team: e.target.textContent,
+      team
     })
   }
 
@@ -51,11 +51,23 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <Sports sports={this.state.sports} displayTeams={this._displayTeams} />
+          <Sports 
+          sports={this.state.sports} 
+          displayTeams={this._displayTeams} />
+          
+          {
+          this.state.sport ? <Teams 
+          sports={this.state.sports} 
+          sport={this.state.sport} 
+          displayPlayers={this._displayPlayers}/> : null
+          }
 
-          <Teams sports={this.state.sports} sport={this.state.sport ? this.state.sport : ''} displayPlayers={this._displayPlayers}/>
-
-          <Players sports={this.state.sports} sport={this.state.sport ? this.state.sport : ''} team={this.state.team ? this.state.team : ''}/>
+          {
+          this.state.team ? <Players 
+          sports={this.state.sports} 
+          sport={this.state.sport} 
+          team={this.state.team}/> : null
+          }
   
         </header>
       </div>

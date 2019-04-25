@@ -8,7 +8,7 @@ function Teams (props) {
                 {
                     Object.keys(props.sports[props.sport]).map(
                         (team, i) => (
-                            <li key={i} onClick={props.displayPlayers}>{team}</li>
+                            <li key={i} onClick={() => props.displayPlayers(team)}>{team}</li>
                         ))
                 }
             </ul>
