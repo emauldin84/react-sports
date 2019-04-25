@@ -6,9 +6,9 @@ function Teams (props) {
             <h4>Teams</h4>
             <ul>
                 {
-                    Object.keys(props.sports['football']).map(
+                    Object.keys(props.sports[props.sport]).map(
                         (team, i) => (
-                            <li key={i}>{team}</li>
+                            <li key={i} onClick={props.displayPlayers}>{team}</li>
                         ))
                 }
             </ul>
